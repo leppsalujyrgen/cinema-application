@@ -1,10 +1,10 @@
-package com.cinema;
+package com.cinema.spring;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ApplicationTests {
+class SpringBootThymeleafExampleApplicationTests {
 
 	@Test
 	void contextLoads() {
