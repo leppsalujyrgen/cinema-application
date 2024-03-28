@@ -15,30 +15,35 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cinema.spring.entity.Movie;
-import com.cinema.spring.repository.MovieRepository;
+import com.cinema.spring.service.MovieService;
 
 @RestController
 @RequestMapping("/api/movies")
 public class MovieController {
 
   @Autowired
-  private MovieRepository movieRepository;
+  private final MovieService movieService;
+  
+  @Autowired
+  public MovieController(MovieService movieService) {
+      this.movieService = movieService;
+  }
   
   @GetMapping()
   public ResponseEntity<List<Movie>> getMovies() {
-	  return new ResponseEntity<List<Movie>>(movieRepository.findAll(), HttpStatus.OK);
+	  return new ResponseEntity<List<Movie>>(movieService.getAllMovies(), HttpStatus.OK);
   }
   
   @PostMapping()
   public ResponseEntity<Movie> createMovie(@RequestBody Movie movie) {
-      Movie savedMovie = movieRepository.save(movie);
+      Movie savedMovie = movieService.createMovie(movie);
       return new ResponseEntity<>(savedMovie, HttpStatus.CREATED);
   }
   
   @DeleteMapping("/{id}")
   public ResponseEntity<Movie> createMovie(@PathVariable Long id) {
-      if (movieRepository.existsById(id)) {
-    	  movieRepository.deleteById(id);
+      if (movieService.getMovieById(id).isPresent()) {
+    	  movieService.deleteMovie(id);
     	  return new ResponseEntity<>(null, HttpStatus.OK);
       }
       return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);

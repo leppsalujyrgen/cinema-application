@@ -9,11 +9,11 @@
 		<version>3.2.4</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.bezkoder</groupId>
-	<artifactId>spring-boot-thymeleaf-example</artifactId>
+	<groupId>com.cinema</groupId>
+	<artifactId>Application</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>spring-boot-thymeleaf-example</name>
-	<description>Spring Boot Thymeleaf example - CRUD with Bootstrap</description>
+	<name>Cinema applcation</name>
+	<description>Cinema application with Spring Boot.</description>
 	<properties>
 		<java.version>21</java.version>
 	</properties>
@@ -65,11 +65,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.cinema</groupId>
-			<artifactId>Application</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 
