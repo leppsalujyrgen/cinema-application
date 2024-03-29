@@ -1,173 +1,190 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-	<head>
-		<meta charset="UTF-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
-		
-		<title>Movie Review | Review</title>
-		
+<head>
+    <!-- Meta tags -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
+    
+    <!-- Page title -->
+    <title>Cinema App | Schedule</title>
 
-		<!-- Loading third party fonts -->
-		<link href="http://fonts.googleapis.com/css?family=Roboto:300,400,700|" rel="stylesheet" type="text/css">
-		<link href="fonts/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- Loading third party fonts -->
+    <link href="http://fonts.googleapis.com/css?family=Roboto:300,400,700|" rel="stylesheet" type="text/css">
+    <link href="fonts/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-		<!-- Loading main css file -->
-		<link th:href="@{/css/style.css}" rel="stylesheet" >
-		
-		<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-		<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-		<script src="/js/script.js"></script>
-	</head>
+    <!-- Loading main CSS file -->
+    <link th:href="@{/css/style.css}" rel="stylesheet">
 
+    <!-- Loading jQuery and Bootstrap libraries -->
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="/js/script.js"></script>
+</head>
+<body>
 
-	<body>
-		
+<div id="site-content">
+    <!-- Header section -->
+    <header class="site-header">
+        <div class="container">
+            <!-- Branding -->
+            <a href="/" id="branding">
+                <img src="images/logo.png" alt="" class="logo">
+                <div class="logo-copy">
+                    <h1 class="site-title">Company Name</h1>
+                    <small class="site-description">Tagline goes here</small>
+                </div>
+            </a>
 
-		<div id="site-content">
-			<header class="site-header">
-				<div class="container">
-					<a href="/" id="branding">
-						<img src="images/logo.png" alt="" class="logo">
-						<div class="logo-copy">
-							<h1 class="site-title">Company Name</h1>
-							<small class="site-description">Tagline goes here</small>
-						</div>
-					</a> <!-- #branding -->
+            <!-- Main navigation -->
+            <div class="main-navigation">
+                <button type="button" class="menu-toggle"><i class="fa fa-bars"></i></button>
+                <ul class="menu">
+                    <li class="menu-item"><a href="/">Movies</a></li>
+                    <li class="menu-item current-menu-item"><a href="/schedule">Schedule</a></li>
+                </ul>
+            </div>
 
-					<div class="main-navigation">
-						<button type="button" class="menu-toggle"><i class="fa fa-bars"></i></button>
-						<ul class="menu">
-							<li class="menu-item"><a href="/">Movies</a></li>
-							<li class="menu-item current-menu-item"><a href="/schedule">Schedule</a></li>
-						</ul> <!-- .menu -->
-					</div> <!-- .main-navigation -->
+            <!-- Mobile navigation (if any) -->
+            <div class="mobile-navigation"></div>
+        </div>
+    </header>
 
-					<div class="mobile-navigation"></div>
-				</div>
-			</header>
-			<main class="main-content">
-				<div class="container">
-					<div class="page">
-						<div class="filters">
-							<span class="filters">
-								<select id="genreSelect">
-									<option value="">Select Genre...</option>
-									<option th:each="genre : ${genres}" th:text="${genre.name}"></option>
-								</select>
-							</span>
-							<span class="filters">
-								<select id="ageRestrictionSelect">
-									<option value="">Select Age Restriction...</option>
-									<option value="99">Any</option>
-									<option value="16">At most PG16</option>
-									<option value="13">At most PG13</option>
-									<option value="0">Family friendly</option>
-								</select>
-							</span>
-							<span>
-								<button class="cta-button" onclick="applyScheduleFilters()">Apply Filters</button>
-							</span>
-						</div>
-						
-						<div class="movie-list">
-							<ul>
-								<li class="list-item" th:each="screening : ${screenings}">
-									<div class="left-section">
-								        <img th:src="@{/images/movie-poster-placeholder.svg}" alt="Thumbnail">
-								    </div>
-								    <div class="middle-section">
-								        <h3 th:text="${screening.movie.title}"></h3>
-								        <p th:text="${screening.movie.description}"></p>
-								        <div class="tags">
-								            <span class="tag" th:each="genre : ${screening.movie.genres}" th:text="${genre.name}"></span>
-								        </div>
-								    </div>
-								    <div class="right-section">
-								        <div class="datetime">
-								            <span class="date" th:text="${#numbers.formatInteger(screening.startTimeDayOfMonth, 2) + '/' + #numbers.formatInteger(screening.startTimeMonth, 2) + '/' + screening.startTimeYear}"></span>
-								            <span class="time" th:text="${#numbers.formatInteger(screening.startTimeHours, 2) + ':' + #numbers.formatInteger(screening.startTimeMinutes, 2)}"></span>
-								        </div>
-								        <a class="cta-button" th:href="'/screenings/' + ${screening.id}">Book now</a>
-								    </div>
-										    
-								</li>
-							</ul>
-						</div> <!-- .movie-list -->
+    <!-- Main content section -->
+    <main class="main-content">
+        <div class="container">
+            <div class="page">
+                <!-- Filters for schedule -->
+                <div class="filters">
+                    <span class="filters">
+                        <select id="genreSelect">
+                            <option value="">Select Genre...</option>
+                            <!-- Iterate over genres -->
+                            <option th:each="genre : ${genres}" th:text="${genre.name}"></option>
+                        </select>
+                    </span>
+                    <span class="filters">
+                        <select id="ageRestrictionSelect">
+                            <option value="">Select Age Restriction...</option>
+                            <option value="99">Any</option>
+                            <option value="16">At most PG16</option>
+                            <option value="13">At most PG13</option>
+                            <option value="0">Family friendly</option>
+                        </select>
+                    </span>
+                    <span>
+                        <button class="cta-button" onclick="applyScheduleFilters()">Apply Filters</button>
+                    </span>
+                </div>
+                
+                <!-- List of movie screenings -->
+                <div class="movie-list">
+                    <ul>
+                        <!-- Iterate over screenings -->
+                        <li class="list-item" th:each="screening : ${screenings}">
+                            <div class="left-section">
+                                <img th:src="@{/images/movie-poster-placeholder.svg}" alt="Thumbnail">
+                            </div>
+                            <div class="middle-section">
+                                <h3 th:text="${screening.movie.title}"></h3>
+                                <p th:text="${screening.movie.description}"></p>
+                                <!-- Display movie genres -->
+                                <div class="tags">
+                                    <span class="tag" th:each="genre : ${screening.movie.genres}" th:text="${genre.name}"></span>
+                                </div>
+                            </div>
+                            <div class="right-section">
+                                <div class="datetime">
+                                    <!-- Display screening date and time -->
+                                    <span class="date" th:text="${#numbers.formatInteger(screening.startTimeDayOfMonth, 2) + '/' + #numbers.formatInteger(screening.startTimeMonth, 2) + '/' + screening.startTimeYear}"></span>
+                                    <span class="time" th:text="${#numbers.formatInteger(screening.startTimeHours, 2) + ':' + #numbers.formatInteger(screening.startTimeMinutes, 2)}"></span>
+                                </div>
+                                <!-- Link to book tickets for the screening -->
+                                <a class="cta-button" th:href="'/screenings/' + ${screening.id}">Book now</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div> <!-- .movie-list -->
+            </div>
+        </div> <!-- .container -->
+    </main>
 
-					</div>
-				</div> <!-- .container -->
-			</main>
-			<footer class="site-footer">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-2">
-							<div class="widget">
-								<h3 class="widget-title">About Us</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia tempore vitae mollitia nesciunt saepe cupiditate</p>
-							</div>
-						</div>
-						<div class="col-md-2">
-							<div class="widget">
-								<h3 class="widget-title">Recent Review</h3>
-								<ul class="no-bullet">
-									<li>Lorem ipsum dolor</li>
-									<li>Sit amet consecture</li>
-									<li>Dolorem respequem</li>
-									<li>Invenore veritae</li>
-								</ul>
-							</div>
-						</div>
-						<div class="col-md-2">
-							<div class="widget">
-								<h3 class="widget-title">Help Center</h3>
-								<ul class="no-bullet">
-									<li>Lorem ipsum dolor</li>
-									<li>Sit amet consecture</li>
-									<li>Dolorem respequem</li>
-									<li>Invenore veritae</li>
-								</ul>
-							</div>
-						</div>
-						<div class="col-md-2">
-							<div class="widget">
-								<h3 class="widget-title">Join Us</h3>
-								<ul class="no-bullet">
-									<li>Lorem ipsum dolor</li>
-									<li>Sit amet consecture</li>
-									<li>Dolorem respequem</li>
-									<li>Invenore veritae</li>
-								</ul>
-							</div>
-						</div>
-						<div class="col-md-2">
-							<div class="widget">
-								<h3 class="widget-title">Social Media</h3>
-								<ul class="no-bullet">
-									<li>Facebook</li>
-									<li>Twitter</li>
-									<li>Google+</li>
-									<li>Pinterest</li>
-								</ul>
-							</div>
-						</div>
-						<div class="col-md-2">
-							<div class="widget">
-								<h3 class="widget-title">Newsletter</h3>
-								<form action="#" class="subscribe-form">
-									<input type="text" placeholder="Email Address">
-								</form>
-							</div>
-						</div>
-					</div> <!-- .row -->
+    <!-- Footer section -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row">
+                <!-- Widgets -->
+                <!-- About Us -->
+                <div class="col-md-2">
+                    <div class="widget">
+                        <h3 class="widget-title">About Us</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia tempore vitae mollitia nesciunt saepe cupiditate</p>
+                    </div>
+                </div>
+                <!-- Recent Review -->
+                <div class="col-md-2">
+                    <div class="widget">
+                        <h3 class="widget-title">Recent Review</h3>
+                        <ul class="no-bullet">
+                            <li>Lorem ipsum dolor</li>
+                            <li>Sit amet consecture</li>
+                            <li>Dolorem respequem</li>
+                            <li>Invenore veritae</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Help Center -->
+                <div class="col-md-2">
+                    <div class="widget">
+                        <h3 class="widget-title">Help Center</h3>
+                        <ul class="no-bullet">
+                            <li>Lorem ipsum dolor</li>
+                            <li>Sit amet consecture</li>
+                            <li>Dolorem respequem</li>
+                            <li>Invenore veritae</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Join Us -->
+                <div class="col-md-2">
+                    <div class="widget">
+                        <h3 class="widget-title">Join Us</h3>
+                        <ul class="no-bullet">
+                            <li>Lorem ipsum dolor</li>
+                            <li>Sit amet consecture</li>
+                            <li>Dolorem respequem</li>
+                            <li>Invenore veritae</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Social Media -->
+                <div class="col-md-2">
+                    <div class="widget">
+                        <h3 class="widget-title">Social Media</h3>
+                        <ul class="no-bullet">
+                            <li>Facebook</li>
+                            <li>Twitter</li>
+                            <li>Google+</li>
+                            <li>Pinterest</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Newsletter -->
+                <div class="col-md-2">
+                    <div class="widget">
+                        <h3 class="widget-title">Newsletter</h3>
+                        <form action="#" class="subscribe-form">
+                            <input type="text" placeholder="Email Address">
+                        </form>
+                    </div>
+                </div>
+            </div> <!-- .row -->
 
-					<div class="colophon">Copyright 2014 Company name, Designed by Themezy. All rights reserved</div>
-				</div> <!-- .container -->
+            <!-- Copyright -->
+            <div class="colophon">Copyright 2014 Company name, Designed by Themezy. All rights reserved</div>
+        </div> <!-- .container -->
+    </footer>
+</div>
 
-			</footer>
-		</div>
-		
-		
-	</body>
-
+</body>
 </html>

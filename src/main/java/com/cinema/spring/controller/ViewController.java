@@ -22,6 +22,9 @@ import com.cinema.spring.service.MovieService;
 import com.cinema.spring.service.ScreeningService;
 import com.cinema.spring.service.SeatService;
 
+/**
+ * Controller class responsible for handling views related to movie scheduling and booking.
+ */
 @Controller
 public class ViewController {
 	
@@ -40,6 +43,14 @@ public class ViewController {
 	@Autowired
 	private final SeatService seatService;
   
+	 /**
+     * Constructor for ViewController.
+     * @param movieService MovieService instance.
+     * @param genreService GenreService instance.
+     * @param screeningService ScreeningService instance.
+     * @param bookingService BookingService instance.
+     * @param seatService SeatService instance.
+     */
 	@Autowired
 	public ViewController(MovieService movieService, GenreService genreService, ScreeningService screeningService, BookingService bookingService, SeatService seatService) {
       this.movieService = movieService;
@@ -49,6 +60,13 @@ public class ViewController {
       this.seatService = seatService;
 	}
 	
+	/**
+     * Retrieves movies for the home page.
+     * @param genre Genre of the movie (optional).
+     * @param ageRestriction Age restriction of the movie (optional).
+     * @param model Model object to add attributes.
+     * @return String representing the view name.
+     */
 	@GetMapping("/")
 	public String getHomePage(@RequestParam(required = false) String genre, @RequestParam(required = false) Integer ageRestriction, Model model) {
 		
@@ -68,6 +86,13 @@ public class ViewController {
 		return "index";
 	}
 	
+	/**
+     * Retrieves screenings for the schedule page.
+     * @param genre Genre of the movie (optional).
+     * @param ageRestriction Age restriction of the movie (optional).
+     * @param model Model object to add attributes.
+     * @return String representing the view name.
+     */
 	@GetMapping("/schedule")
 	public String getMoviesPage(@RequestParam(required = false) String genre, @RequestParam(required = false) Integer ageRestriction, Model model) {
 		
@@ -87,6 +112,12 @@ public class ViewController {
 		return "schedule";
 	}
 	
+	/**
+     * Retrieves details of a specific movie.
+     * @param id ID of the movie.
+     * @param model Model object to add attributes.
+     * @return String representing the view name.
+     */
 	@GetMapping("/movies/{id}")
 	public String getMovieOverviewPage(@PathVariable Long id, Model model) {
 		model.addAttribute("movie", movieService.getMovieById(id).get());
@@ -94,11 +125,22 @@ public class ViewController {
 		return "movie_overview";
 	}
 	
+	/**
+     * Redirects to the screening page after selecting a movie.
+     * @param screeningId ID of the screening.
+     * @return String representing the redirect URL.
+     */
 	@PostMapping("/movies/screening")
 	public String getScreeningPage(@RequestParam("screeningId") Long screeningId) {
 		return "redirect:/screenings/" + screeningId;
 	}
 	
+	/**
+     * Retrieves screenings for the seat selection page.
+     * @param id ID of the screening.
+     * @param model Model object to add attributes.
+     * @return String representing the view name.
+     */
 	@GetMapping("/screenings/{id}")
 	public String getScreeningPage(@PathVariable("id") Long id, Model model) {
 		Optional<Screening> screening = screeningService.getScreeningById(id);
@@ -109,7 +151,13 @@ public class ViewController {
 		return "auditorium1";
 	}
 	
-
+	 /**
+     * Receives seat numbers and books them for a screening.
+     * @param screeningId ID of the screening.
+     * @param seatIds Array of seat IDs to be booked.
+     * @param model Model object to add attributes.
+     * @return String representing the view name.
+     */
     @PostMapping("/screenings/{id}/seats/book")
     public String receiveSeatNumbers(@PathVariable("id") Long screeningId, @RequestBody Integer[] seatIds, Model model) {
     	Optional<Screening> screening = screeningService.getScreeningById(screeningId);
