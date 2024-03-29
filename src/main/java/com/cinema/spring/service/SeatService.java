@@ -37,4 +37,5 @@ public class SeatService {
     public List<Seat> getAllSeatsByAuditoriumId(Integer auditoriumId) {
         return seatRepository.findAllByAuditoriumId(auditoriumId);
     }
+
 }

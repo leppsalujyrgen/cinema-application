@@ -235,7 +235,8 @@ ul, ol {
 
 a {
   text-decoration: none;
-  color: #ffaa3c; }
+  color: #84878d;
+}
 
 address {
   font-style: normal; }
@@ -1530,6 +1531,10 @@ ul.arrow {
   font-size: 30px;
   font-size: 2em;
   font-weight: 300; }
+  
+.movie-meta {
+	margin-bottom: 50px;
+}
 
 .movie-schedule {
   list-style: none; }
@@ -1593,6 +1598,10 @@ ul.arrow {
     background-image: url(images/select.png);
     background-repeat: no-repeat;
     background-position: 100% center; }
+    
+.booking-details .filters {
+	margin-bottom: 0px;
+}
 
 
 /*
@@ -1604,9 +1613,19 @@ ul.arrow {
     margin-bottom: 10px;
 }
 
+.movie-item:hover {
+	background-color: #ccc;
+	cursor: pointer;
+}
+
 .left-section {
     flex: 0 0 auto; /* Do not grow or shrink */
     padding: 10px;
+}
+
+.left-section img {
+	width: 100px;
+	height: 150px;
 }
 
 .middle-section {

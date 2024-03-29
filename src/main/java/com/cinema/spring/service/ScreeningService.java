@@ -21,6 +21,10 @@ public class ScreeningService {
     public List<Screening> getAllScreenings() {
         return screeningRepository.findAll();
     }
+    
+    public List<Screening> getAllScreeningsByMovieId(Long movieId) {
+    	return screeningRepository.findAllByMovieId(movieId);
+    }
 
     public Optional<Screening> getScreeningById(Long id) {
         return screeningRepository.findById(id);

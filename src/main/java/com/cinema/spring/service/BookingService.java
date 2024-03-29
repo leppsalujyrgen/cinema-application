@@ -14,11 +14,13 @@ public class BookingService {
 	
 	private final ScreeningService screeningService;
 	private final BookingRepository bookingRepository;
+	private final SeatService seatService;
 
     @Autowired
-    public BookingService(ScreeningService screeningService, BookingRepository bookingRepository) {
-        this.screeningService = screeningService;
+    public BookingService(ScreeningService screeningService, SeatService seatService, BookingRepository bookingRepository) {
         this.bookingRepository = bookingRepository;
+        this.screeningService = screeningService;
+        this.seatService = seatService;
     }
 	
 	public Booking bookSeat(Long screeningId, int rowNumber, int columnNumber) {
@@ -46,7 +48,7 @@ public class BookingService {
 	 
 
     private boolean seatExists(Auditorium auditorium, int rowNumber, int columnNumber) {
-        for (Seat seat : auditorium.getSeats()) {
+        for (Seat seat : seatService.getAllSeatsByAuditoriumId(auditorium.getId())) {
         	if ((seat.getRowNumber() == rowNumber) && (seat.getColumnNumber() == columnNumber)) {
         		return true;
         	}
@@ -55,7 +57,7 @@ public class BookingService {
     }
 
     private boolean seatDoubleBooked(Screening screening, int rowNumber, int columnNumber) {
-    	for (Booking booking : screening.getBookings()) {
+    	for (Booking booking : bookingRepository.findAllByScreeningId(screening.getId())) {
         	if ((booking.getRowNumber() == rowNumber) && (booking.getColumnNumber() == columnNumber)) {
         		return true;
         	}

@@ -24,7 +24,7 @@ public class Booking {
 	
 	
 	@ManyToOne()
-	@JoinColumn(name = "screening_id", referencedColumnName = "id")
+	@JoinColumn(name = "screening_id", nullable = false)
 	private Screening screening;
 	
 	public Booking() {}
@@ -32,7 +32,7 @@ public class Booking {
 	public Booking(Screening screening, int rowNumber, int columnNumber) {
 		this.rowNumber = rowNumber;
 		this.columnNumber = columnNumber;
-		//this.screening = screening;
+		this.screening = screening;
 	}
 
 	public Long getId() {
@@ -57,17 +57,6 @@ public class Booking {
 
 	public void setColumnNumber(int columnNumber) {
 		this.columnNumber = columnNumber;
-	}
-
-	public Screening getScreening() {
-		//return screening;
-		return null;
-	}
-
-	public void setScreening(Screening screening) {
-		//this.screening = screening;
-		return;
-	}
-	
+	}	
 	
 }

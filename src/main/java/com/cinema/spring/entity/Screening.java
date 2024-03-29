@@ -1,11 +1,9 @@
 package com.cinema.spring.entity;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,7 +11,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -37,10 +34,6 @@ public class Screening {
 
     @Column(nullable = false)
     private LocalDateTime endTime;
-    
-    
-    @OneToMany(mappedBy = "screening", cascade = CascadeType.ALL)
-    private List<Booking> bookings;
 	
     
     public Screening() {
@@ -101,14 +94,6 @@ public class Screening {
 	public void setAuditorium(Auditorium auditorium) {
 		this.auditorium = auditorium;
 	}
-
-	public List<Booking> getBookings() {
-		return bookings;
-	}
-
-	public void setBookings(List<Booking> bookings) {
-		this.bookings = bookings;
-	}   
     
 	
 }
