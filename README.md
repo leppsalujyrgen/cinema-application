@@ -33,11 +33,11 @@ The application uses an H2 in-memory database. To access the H2 database console
 * Seat Booking: Select seats for a screening and complete the booking process. (Incomplete: Selected seats can not be submitted)
 
 ## Dependencies
-Java 8 or higher
-Maven
-Spring Boot
-Thymeleaf
-H2 Database
+* Java 8 or higher
+* Maven
+* Spring Boot
+* Thymeleaf
+* H2 Database
 
 ## Templates used
 * [HTML/CSS/JS front-end template by Themezy](https://www.themezy.com/free-website-templates/10-movie-reviews-responsive-template)
@@ -45,6 +45,3 @@ H2 Database
 
 ## Author
 Jürgen Leppsalu
-
-License
-This project is licensed under the MIT License.
