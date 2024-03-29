@@ -17,6 +17,7 @@
 		
 		<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 		<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+		<script src="/js/script.js"></script>
 	</head>
 
 
@@ -39,7 +40,6 @@
 						<ul class="menu">
 							<li class="menu-item current-menu-item"><a href="/">Movies</a></li>
 							<li class="menu-item"><a href="/schedule">Schedule</a></li>
-							<li class="menu-item"><a href="/about">About</a></li>
 						</ul> <!-- .menu -->
 					</div> <!-- .main-navigation -->
 
@@ -50,14 +50,26 @@
 				<div class="container">
 					<div class="page">
 						<div class="filters">
-							<select name="#" id="#">
-								<option value="#">Any</option>
-								<option th:each="genre : ${genres}" th:text="${genre.name}"></option>
-							</select>
+							<span class="filters">
+								<select id="genreSelect">
+									<option value="">Select Genre...</option>
+									<option th:each="genre : ${genres}" th:text="${genre.name}"></option>
+								</select>
+							</span>
+							<span class="filters">
+								<select id="ageRestrictionSelect">
+									<option value="">Select Age Restriction...</option>
+									<option value="16">At most PG16</option>
+									<option value="13">At most PG13</option>
+									<option value="0">Family friendly</option>
+								</select>
+							</span>
+							<span>
+								<button class="cta-button" onclick="applyMovieFilters()">Apply Filters</button>
+							</span>
 						</div>
 						<div class="movie-list">
 							<ul>
-								
 								<li th:each="movie : ${movies}" >
 									<a th:href="@{'/movies/' + ${movie.id}}">
 									<div class="list-item movie-item" >

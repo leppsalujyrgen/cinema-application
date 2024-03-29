@@ -94,6 +94,24 @@ public class Screening {
 	public void setAuditorium(Auditorium auditorium) {
 		this.auditorium = auditorium;
 	}
-    
 	
+	public Integer getStartTimeDayOfMonth() {
+		return startTime.toLocalDate().getDayOfMonth();
+	}   
+	
+	public Integer getStartTimeMonth() {
+		return startTime.toLocalDate().getMonthValue();
+	}    
+	
+	public Integer getStartTimeYear() {
+		return startTime.toLocalDate().getYear();
+	}  
+	
+	public Integer getStartTimeHours() {
+		return startTime.toLocalTime().getHour();
+	}     	
+	
+	public Integer getStartTimeMinutes() {
+		return startTime.toLocalTime().getMinute();
+	}   
 }

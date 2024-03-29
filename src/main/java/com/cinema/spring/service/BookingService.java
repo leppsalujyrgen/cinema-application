@@ -3,6 +3,7 @@ package com.cinema.spring.service;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.cinema.spring.entity.Auditorium;
 import com.cinema.spring.entity.Booking;
@@ -10,6 +11,7 @@ import com.cinema.spring.entity.Screening;
 import com.cinema.spring.entity.Seat;
 import com.cinema.spring.repository.BookingRepository;
 
+@Service
 public class BookingService {
 	
 	private final ScreeningService screeningService;

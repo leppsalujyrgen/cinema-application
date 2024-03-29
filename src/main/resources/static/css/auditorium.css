@@ -1,0 +1,111 @@
+@import url("https://fonts.googleapis.com/css?family=Lato&display=swap");
+
+#booking-container {
+  background-color: rgba(128,0,0,0.65);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-family: "Lato", sans-serif;
+  margin: 0;
+  padding: 0, 20px;
+}
+
+#booking-container .movie-container {
+  margin: 20px 0;
+}
+
+#booking-container .movie-container select {
+  background-color: rgba(0,0,0,0);
+  border: 0;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-left: 10px;
+  padding: 5px 15px 5px 15px;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+#booking-container .seat {
+  background-color: #444451;
+  height: 26px;
+  width: 32px;
+  margin: 3px;
+  font-size: 50px;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  border-bottom: 10px solid black;
+  border-left: 7px solid black;
+  border-right: 7px solid black;
+}
+
+#booking-container .seat.selected {
+  background-color: lightgreen;
+}
+
+#booking-container .seat.sold {
+  background-color: #fff;
+}
+
+#booking-container .seat:nth-of-type(2) {
+  margin-right: 18px;
+}
+
+#booking-container .seat:nth-last-of-type(2) {
+  margin-left: 18px;
+}
+
+#booking-container .seat:not(.sold):hover {
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
+#booking-container .showcase .seat:not(.sold):hover {
+  cursor: default;
+  transform: scale(1);
+}
+
+#booking-container .showcase {
+  background: rgba(0, 0, 0, 0.1);
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: #777;
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+}
+
+#booking-container .showcase li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 10px;
+}
+#booking-container .showcase li small {
+  color: white;
+  margin-left: 2px;
+}
+
+#booking-container .row {
+  display: flex;
+}
+
+#booking-container .screen {
+  background-color: #fff;
+  height: 120px;
+  width: 100%;
+  margin: 15px 0;
+  transform: rotateX(-48deg);
+  box-shadow: 0 3px 10px rgba(255, 255, 255, 0.7);
+}
+
+#booking-container p.text{
+    margin: 5px 0;
+}
+
+#booking-container p.text span{
+    color: rgb(158, 248, 158);
+}

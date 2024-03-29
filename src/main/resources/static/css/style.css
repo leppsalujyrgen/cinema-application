@@ -1536,6 +1536,10 @@ ul.arrow {
 	margin-bottom: 50px;
 }
 
+.movie-list ul {
+	list-style: none;
+}
+
 .movie-schedule {
   list-style: none; }
   .movie-schedule li {
@@ -1582,8 +1586,9 @@ ul.arrow {
   font-size: 2.4em;
   font-weight: 300; }
 
-.filters {
-  margin-bottom: 50px; }
+.filters  {
+  margin-bottom: 50px; 
+}
   .filters select {
     -webkit-appearance: none;
     -moz-appearance: none;

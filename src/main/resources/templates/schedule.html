@@ -15,8 +15,9 @@
 		<!-- Loading main css file -->
 		<link th:href="@{/css/style.css}" rel="stylesheet" >
 		
-		<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 		<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+		<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+		<script src="/js/script.js"></script>
 	</head>
 
 
@@ -39,7 +40,6 @@
 						<ul class="menu">
 							<li class="menu-item"><a href="/">Movies</a></li>
 							<li class="menu-item current-menu-item"><a href="/schedule">Schedule</a></li>
-							<li class="menu-item"><a href="/about">About</a></li>
 						</ul> <!-- .menu -->
 					</div> <!-- .main-navigation -->
 
@@ -50,31 +50,46 @@
 				<div class="container">
 					<div class="page">
 						<div class="filters">
-							<select name="#" id="#">
-								<option value="#">Any</option>
-								<option th:each="genre : ${genres}" th:text="${genre.name}"></option>
-							</select>
+							<span class="filters">
+								<select name="#" id="genreSelect">
+									<option value="#">Select Genre...</option>
+									<option th:each="genre : ${genres}" th:text="${genre.name}"></option>
+								</select>
+							</span>
+							<span class="filters">
+								<select id="ageRestrictionSelect">
+									<option value="">Select Age Restriction...</option>
+									<option value="16">At most PG16</option>
+									<option value="13">At most PG13</option>
+									<option value="0">Family friendly</option>
+								</select>
+							</span>
+							<span>
+								<button class="cta-button" onclick="applyMovieFilters()">Apply Filters</button>
+							</span>
 						</div>
+						
 						<div class="movie-list">
 							<ul>
-								<li class="list-item" th:each="movie : ${movies}">
-								    <div class="left-section">
+								<li class="list-item" th:each="screening : ${screenings}">
+									<div class="left-section">
 								        <img th:src="@{/images/movie-poster-placeholder.svg}" alt="Thumbnail">
 								    </div>
 								    <div class="middle-section">
-								        <h3 th:text="${movie.title}"></h3>
-								        <p th:text="${movie.description}"></p>
+								        <h3 th:text="${screening.movie.title}"></h3>
+								        <p th:text="${screening.movie.description}"></p>
 								        <div class="tags">
-								            <span class="tag" th:each="genre : ${movie.genres}" th:text="${genre.name}"></span>
+								            <span class="tag" th:each="genre : ${screening.movie.genres}" th:text="${genre.name}"></span>
 								        </div>
 								    </div>
 								    <div class="right-section">
 								        <div class="datetime">
-								            <span class="date">28/03/2024</span>
-								            <span class="time">18:00</span>
+								            <span class="date" th:text="${#numbers.formatInteger(screening.startTimeDayOfMonth, 2) + '/' + #numbers.formatInteger(screening.startTimeMonth, 2) + '/' + screening.startTimeYear}"></span>
+								            <span class="time" th:text="${#numbers.formatInteger(screening.startTimeHours, 2) + ':' + #numbers.formatInteger(screening.startTimeMinutes, 2)}"></span>
 								        </div>
-								        <button class="cta-button">Book now</button>
+								        <a class="cta-button" th:href="'/screenings/' + ${screening.id}">Book now</a>
 								    </div>
+										    
 								</li>
 							</ul>
 						</div> <!-- .movie-list -->

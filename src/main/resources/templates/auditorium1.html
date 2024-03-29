@@ -13,6 +13,7 @@
 
 		<!-- Loading main css file -->
 		<link th:href="@{/css/style.css}" rel="stylesheet" >
+		<link th:href="@{/css/auditorium.css}" rel="stylesheet" >
 		
 		<!--[if lt IE 9]>
 		<script src="js/ie-support/html5.js"></script>
@@ -41,7 +42,6 @@
 						<ul class="menu">
 							<li class="menu-item"><a href="/">Movies</a></li>
 							<li class="menu-item"><a href="/schedule">Schedule</a></li>
-							<li class="menu-item"><a href="/about">About</a></li>
 						</ul> <!-- .menu -->
 					</div> <!-- .main-navigation -->
 
@@ -50,6 +50,100 @@
 			</header>
 			<main class="main-content">
 				<div class="container">
+					<div id="booking-container">
+				      <div class="movie-container" hidden>
+				        <label> Select a movie:</label>
+				        <select id="movie">
+				          <option value="10.5"></option>
+				        </select>
+				      </div>
+				  
+				      <ul class="showcase">
+				        <li>
+				          <div class="seat"></div>
+				          <small>Available</small>
+				        </li>
+				        <li>
+				          <div class="seat selected"></div>
+				          <small>Selected</small>
+				        </li>
+				        <li>
+				          <div class="seat sold"></div>
+				          <small>Sold</small>
+				        </li>
+				      </ul>
+				      <div>
+				        <div class="screen"></div>
+				  
+				        <div class="row">
+				          <div class="seat" value="1"></div>
+				          <div class="seat" value="2"></div>
+				          <div class="seat" value="3"></div>
+				          <div class="seat" value="4"></div>
+				          <div class="seat" value="5"></div>
+				          <div class="seat" value="6"></div>
+				          <div class="seat" value="7"></div>
+				          <div class="seat" value="8"></div>
+				        </div>
+				  
+				        <div class="row">
+				          <div class="seat" value="9"></div>
+				          <div class="seat" value="10"></div>
+				          <div class="seat" value="11"></div>
+				          <div class="seat sold" value="12"></div>
+				          <div class="seat sold" value="13"></div>
+				          <div class="seat" value="14"></div>
+				          <div class="seat" value="15"></div>
+				          <div class="seat" value="16"></div>
+				        </div>
+				        <div class="row">
+				          <div class="seat"></div>
+				          <div class="seat"></div>
+				          <div class="seat"></div>
+				          <div class="seat"></div>
+				          <div class="seat"></div>
+				          <div class="seat"></div>
+				          <div class="seat sold"></div>
+				          <div class="seat sold"></div>
+				        </div>
+				        <div class="row">
+				          <div class="seat"></div>
+				          <div class="seat"></div>
+				          <div class="seat"></div>
+				          <div class="seat"></div>
+				          <div class="seat"></div>
+				          <div class="seat"></div>
+				          <div class="seat"></div>
+				          <div class="seat"></div>
+				        </div>
+				        <div class="row">
+				          <div class="seat"></div>
+				          <div class="seat"></div>
+				          <div class="seat"></div>
+				          <div class="seat sold"></div>
+				          <div class="seat sold"></div>
+				          <div class="seat"></div>
+				          <div class="seat"></div>
+				          <div class="seat"></div>
+				        </div>
+				        <div class="row">
+				          <div class="seat"></div>
+				          <div class="seat"></div>
+				          <div class="seat"></div>
+				          <div class="seat"></div>
+				          <div class="seat sold"></div>
+				          <div class="seat sold"></div>
+				          <div class="seat sold"></div>
+				          <div class="seat"></div>
+				        </div>
+				      </div>
+				  
+				      <p class="text">
+				        You have selected <span id="count">0</span> seat for a price of <span id="total">0</span> EUR.
+				      </p>
+			      	  <button class="cta-button" onclick="postSeatData()">Confirm Booking</button>
+				      
+				    </div>
 					
 				</div> <!-- .container -->
 			</main>
@@ -126,8 +220,7 @@
 
 
 		<script src="/js/jquery-1.11.1.min.js"></script>
-		<script src="/js/plugins.js"></script>
-		<script src="/js/app.js"></script>
+		<script src="/js/auditorium.js"></script>
 		
 	</body>
 

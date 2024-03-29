@@ -3,9 +3,11 @@ package com.cinema.spring.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cinema.spring.entity.Genre;
 import com.cinema.spring.entity.Movie;
 import com.cinema.spring.repository.MovieRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,6 +19,50 @@ public class MovieService {
     @Autowired
     public MovieService(MovieRepository movieRepository) {
         this.movieRepository = movieRepository;
+    }
+    
+    public List<Movie> getAllMovies(String genreName) {
+		List<Movie> filteredMovies = new ArrayList<>();
+        
+        for (Movie movie : movieRepository.findAll()) {
+            for (Genre genre : movie.getGenres()) { // Inefficient placeholder solution
+            	if (genre.getName().equals(genreName)) {
+            		filteredMovies.add(movie);
+            		break;
+            	}
+            }
+        }
+        
+        return filteredMovies;
+    }
+    
+    public List<Movie> getAllMovies(Integer ageRestriction) {
+    	List<Movie> filteredMovies = new ArrayList<>();
+        
+        for (Movie movie : movieRepository.findAll()) {
+            if (movie.getRestrictionAge() <= ageRestriction) {
+                filteredMovies.add(movie);
+            }
+        }
+        
+        return filteredMovies;
+    }
+    
+    public List<Movie> getAllMovies(Integer ageRestriction, String genreName) {
+    	List<Movie> filteredMovies = new ArrayList<>();
+        
+        for (Movie movie : movieRepository.findAll()) {
+            if (movie.getRestrictionAge() <= ageRestriction) {
+            	for (Genre genre : movie.getGenres()) { // Inefficient placeholder solution
+                	if (genre.getName().equals(genreName)) {
+                		filteredMovies.add(movie);
+                		break;
+                	}
+                }
+            }
+        }
+        
+        return filteredMovies;
     }
 
     public List<Movie> getAllMovies() {

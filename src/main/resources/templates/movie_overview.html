@@ -39,7 +39,6 @@
 						<ul class="menu">
 							<li class="menu-item"><a href="/">Movies</a></li>
 							<li class="menu-item"><a href="/schedule">Schedule</a></li>
-							<li class="menu-item"><a href="/about">About</a></li>
 						</ul> <!-- .menu -->
 					</div> <!-- .main-navigation -->
 
@@ -80,7 +79,10 @@
 										<h4>Upcoming screenings</h4>
 										<span class="filters">
 											<select name="screeningId">
-												<option th:each="screening : ${screenings}" th:value="${screening.id}" th:text="${screening.startTime}"></option>
+											    <option th:each="screening : ${screenings}" 
+											            th:value="${screening.id}" 
+											            th:text="${#numbers.formatInteger(screening.startTimeDayOfMonth, 2) + '/' + #numbers.formatInteger(screening.startTimeMonth, 2) + '/' + screening.startTimeYear + ' ' + #numbers.formatInteger(screening.startTimeHours, 2) + ':' + #numbers.formatInteger(screening.startTimeMinutes, 2)}">
+											    </option>
 											</select>
 										</span>
 										
