@@ -51,21 +51,22 @@
 					<div class="page">
 						<div class="filters">
 							<span class="filters">
-								<select name="#" id="genreSelect">
-									<option value="#">Select Genre...</option>
+								<select id="genreSelect">
+									<option value="">Select Genre...</option>
 									<option th:each="genre : ${genres}" th:text="${genre.name}"></option>
 								</select>
 							</span>
 							<span class="filters">
 								<select id="ageRestrictionSelect">
 									<option value="">Select Age Restriction...</option>
+									<option value="99">Any</option>
 									<option value="16">At most PG16</option>
 									<option value="13">At most PG13</option>
 									<option value="0">Family friendly</option>
 								</select>
 							</span>
 							<span>
-								<button class="cta-button" onclick="applyMovieFilters()">Apply Filters</button>
+								<button class="cta-button" onclick="applyScheduleFilters()">Apply Filters</button>
 							</span>
 						</div>
 						

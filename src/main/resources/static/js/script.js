@@ -48,3 +48,22 @@ function applyMovieFilters() {
 	
 	window.location.href = urlWithParams;
 }
+
+function applyScheduleFilters() {
+    // Get selected genre and age restriction values
+    var genre = document.getElementById("genreSelect").value;
+    var ageRestriction = document.getElementById("ageRestrictionSelect").value;
+    
+    // Construct query parameters
+    var queryParams = new URLSearchParams();
+    if (genre) 
+    	queryParams.append('genre', genre);
+    if (ageRestriction)
+    	queryParams.append('ageRestriction', ageRestriction);
+    
+    // Construct URL with query parameters
+    var currentUrl = "/schedule";
+    var urlWithParams = currentUrl.split('?')[0] + '?' + queryParams.toString();
+	
+	window.location.href = urlWithParams;
+}

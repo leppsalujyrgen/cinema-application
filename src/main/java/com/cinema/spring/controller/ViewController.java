@@ -69,8 +69,20 @@ public class ViewController {
 	}
 	
 	@GetMapping("/schedule")
-	public String getMoviesPage(Model model) {
-		model.addAttribute("screenings", screeningService.getAllScreenings());
+	public String getMoviesPage(@RequestParam(required = false) String genre, @RequestParam(required = false) Integer ageRestriction, Model model) {
+		
+		List<Screening> screenings;
+		if (genre != null && ageRestriction != null) {
+			screenings = screeningService.getAllScreenings(ageRestriction, genre);
+        } else if (genre != null) {
+        	screenings = screeningService.getAllScreenings(genre);
+        } else if (ageRestriction != null) {
+        	screenings = screeningService.getAllScreenings(ageRestriction);
+        } else {
+        	screenings = screeningService.getAllScreenings();
+        }
+		
+		model.addAttribute("screenings", screenings);
 		model.addAttribute("genres", genreService.getAllGenres());
 		return "schedule";
 	}
