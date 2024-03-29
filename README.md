@@ -1,83 +1,50 @@
-# Spring Boot Thymeleaf example: CRUD Application
+# Cinema Booking System
+## Overview
+This is a Cinema Booking System built using Java Spring framework and Maven. The application allows users to browse movies, view their schedules, and book seats for screenings. The project includes both backend and frontend components.
 
-Build a Spring Boot Thymeleaf CRUD example with Maven that use Spring Data JPA to interact with H2/MySQL/PostgreSQL database. You'll know:
-- How to configure Spring Data, JPA, Hibernate to work with Database
-- How to define Data Entity and Repository interfaces
-- Way to create Spring Controller to process HTTP requests
-- Way to use Spring Data JPA to interact with H2/MySQL/PostgreSQL Database
-- How to use Thymeleaf template engine for View layer
+## Setup
+To run the application, follow these steps:
 
-![spring-boot-thymeleaf-example](spring-boot-thymeleaf-example.png)
+1. Clone the repository to your local machine:
+`git clone https://github.com/leppsalujyrgen/cinema-application.git`
 
-For more detail, please visit:
-> [Spring Boot Thymeleaf example: CRUD Application](https://www.bezkoder.com/spring-boot-thymeleaf-example/)
+1. Navigate to the project directory:
+`cd cinema-application`
 
-More Practice:
-> [Thymeleaf Pagination example](https://www.bezkoder.com/thymeleaf-pagination/)
+1. Build the project using Maven:
+`mvn clean install`
 
-> [Thymeleaf Pagination and Sorting example](https://www.bezkoder.com/thymeleaf-pagination-and-sorting-example/)
+1. Run the application using the Maven Spring Boot plugin:
+`mvn spring-boot:run`
 
-> [Spring Boot File upload example with Multipart File](https://www.bezkoder.com/spring-boot-file-upload/)
+1. Access the application through a web browser at
+`http://localhost:8080/`
 
-> [Spring Boot Pagination & Filter example | Spring JPA, Pageable](https://www.bezkoder.com/spring-boot-pagination-filter-jpa-pageable/)
+## Database
+The application uses an H2 in-memory database. To access the H2 database console, navigate to http://localhost:8080/h2-ui in your web browser. Use the following credentials:
 
-> [Spring Data JPA Sort/Order by multiple Columns | Spring Boot](https://www.bezkoder.com/spring-data-sort-multiple-columns/)
+* Username: admin
+* Password: admin
 
-> [Spring Boot Repository Unit Test with @DataJpaTest](https://www.bezkoder.com/spring-boot-unit-test-jpa-repo-datajpatest/)
+## Usage
+* Homepage: Browse through available movies and filter them by genre or age restriction.
+* Schedule Page: View the schedule of movie screenings and filter them by genre or age restriction.
+* Movie Overview Page: See detailed information about a specific movie and upcoming screenings.
+* Seat Booking: Select seats for a screening and complete the booking process. (Incomplete: Selected seats can not be submitted)
 
-> [Deploy Spring Boot App on AWS – Elastic Beanstalk](https://www.bezkoder.com/deploy-spring-boot-aws-eb/)
+## Dependencies
+Java 8 or higher
+Maven
+Spring Boot
+Thymeleaf
+H2 Database
 
-Exception Handling:
-> [Spring Boot @ControllerAdvice & @ExceptionHandler example](https://www.bezkoder.com/spring-boot-controlleradvice-exceptionhandler/)
+## Templates used
+* [HTML/CSS/JS front-end template by Themezy](https://www.themezy.com/free-website-templates/10-movie-reviews-responsive-template)
+* [Spring Boot MVC template project by Bezkoder](https://github.com/bezkoder/spring-boot-thymeleaf-example)
 
-> [@RestControllerAdvice example in Spring Boot](https://www.bezkoder.com/spring-boot-restcontrolleradvice/)
+## Author
+Jürgen Leppsalu
 
-Rest API:
-> [Spring Boot + MySQL: CRUD Rest API example](https://www.bezkoder.com/spring-boot-jpa-crud-rest-api/)
-
-> [Spring Boot + PostgreSQL: CRUD Rest API example](https://www.bezkoder.com/spring-boot-postgresql-example/)
-
-> [Spring Boot + SQL Server: CRUD Rest API example](https://www.bezkoder.com/spring-boot-sql-server/)
-
-> [Spring Boot + H2: CRUD Rest API example](https://www.bezkoder.com/spring-boot-jpa-h2-example/)
-
-> [Spring Boot + MongoDB: CRUD Rest API example](https://www.bezkoder.com/spring-boot-mongodb-crud/)
-
-> [Spring Boot + Oracle: CRUD Rest API example](https://www.bezkoder.com/spring-boot-hibernate-oracle/)
-
-> [Spring Boot + Cassandra: CRUD Rest API example](https://www.bezkoder.com/spring-boot-cassandra-crud/)
-
-Security:
-> [Spring Boot + Spring Security JWT Authentication & Authorization](https://www.bezkoder.com/spring-boot-jwt-authentication/)
-
-Fullstack:
-> [Vue + Spring Boot example](https://www.bezkoder.com/spring-boot-vue-js-crud-example/)
-
-> [Angular 8 + Spring Boot example](https://www.bezkoder.com/angular-spring-boot-crud/)
-
-> [Angular 10 + Spring Boot example](https://www.bezkoder.com/angular-10-spring-boot-crud/)
-
-> [Angular 11 + Spring Boot example](https://www.bezkoder.com/angular-11-spring-boot-crud/)
-
-> [Angular 12 + Spring Boot example](https://www.bezkoder.com/angular-12-spring-boot-crud/)
-
-> [Angular 13 + Spring Boot example](https://www.bezkoder.com/spring-boot-angular-13-crud/)
-
-> [Angular 14 + Spring Boot example](https://www.bezkoder.com/spring-boot-angular-14-crud/)
-
-> [React + Spring Boot + MySQL example](https://www.bezkoder.com/react-spring-boot-crud/)
-
-> [React + Spring Boot + PostgreSQL example](https://www.bezkoder.com/spring-boot-react-postgresql/)
-
-Run both Back-end & Front-end in one place:
-> [Integrate Angular with Spring Boot Rest API](https://www.bezkoder.com/integrate-angular-spring-boot/)
-
-> [Integrate React.js with Spring Boot Rest API](https://www.bezkoder.com/integrate-reactjs-spring-boot/)
-
-> [Integrate Vue.js with Spring Boot Rest API](https://www.bezkoder.com/integrate-vue-spring-boot/)
-
-## Run Spring Boot application
-```
-mvn spring-boot:run
-```
-
+License
+This project is licensed under the MIT License.
