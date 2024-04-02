@@ -2,7 +2,7 @@
 ## Overview
 This is a Cinema Booking System built using Java Spring framework and Maven. The application allows users to browse movies, view their schedules, and book seats for screenings. The project includes both backend and frontend components.
 
-## Setup
+## Setup (tested on Windows)
 To run the application, follow these steps:
 
 1. Clone the repository to your local machine:
@@ -12,10 +12,10 @@ To run the application, follow these steps:
 `cd cinema-application`
 
 1. Build the project using Maven:
-`mvn clean install`
+`.\mvnw.cmd clean install -f .\pom.xml`
 
 1. Run the application using the Maven Spring Boot plugin:
-`mvn spring-boot:run`
+`.\mvnw.cmd spring-boot:run`
 
 1. Access the application through a web browser at
 `http://localhost:8080/`
@@ -33,7 +33,7 @@ The application uses an H2 in-memory database. To access the H2 database console
 * Seat Booking: Select seats for a screening and complete the booking process. (Incomplete: Selected seats can not be submitted)
 
 ## Dependencies
-* Java 8 or higher
+* Java 21 or higher
 * Maven
 * Spring Boot
 * Thymeleaf
